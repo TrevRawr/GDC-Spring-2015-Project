@@ -155,11 +155,11 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751779280}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 1, g: .956862748, b: .839215696, a: 1}
-  m_Intensity: 1
+  m_Color: {r: .566176474, g: .322996199, b: .0624459274, a: 1}
+  m_Intensity: 2.05999994
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -187,8 +187,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751779280}
-  m_LocalRotation: {x: .994005561, y: -.0435644761, z: .0686601326, w: .0730818808}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: .568067729, y: .389867425, z: .408027887, w: .599012375}
+  m_LocalPosition: {x: 3.88000011, y: 5.26999998, z: -.419999987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1411,7 +1411,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1143597360}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 0
@@ -1431,9 +1431,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardMoveSpeed: 0
-  forwardAcceleration: .00100000005
+  forwardAcceleration: 9.99999975e-05
   verticalSpeed: 20
   horizontalSpeed: 20
+  tiltOffset: 2
+  verticalTiltSpeed: .25
+  horizontalTiltSpeed: .25
+  boostStrength: 100
+  maxSpeed: 10000
   maxVerticalDistance: 4
   maxHorizontalDistance: 4
 --- !u!23 &1143597363
@@ -1703,7 +1708,6 @@ GameObject:
   - 92: {fileID: 2102512796}
   - 124: {fileID: 2102512795}
   - 81: {fileID: 2102512794}
-  - 114: {fileID: 2102512799}
   - 114: {fileID: 2102512800}
   m_Layer: 0
   m_Name: Main Camera
@@ -1777,17 +1781,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1198107274}
   m_RootOrder: 1
---- !u!114 &2102512799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2102512793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115939a9f51b04845b23a9bdb6023759, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2102512800
 MonoBehaviour:
   m_ObjectHideFlags: 0
