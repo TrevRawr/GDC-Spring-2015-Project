@@ -14,7 +14,8 @@ public class LevelGenerator : MonoBehaviour {
 
 	private GameObject player;
 	public float asteroidToCharacterDistance;
-	public float asteroidSpeed;
+	public float asteroidSpeed = 100;
+	private int wallchance;
 
 	void Start () 
 	{
@@ -34,7 +35,7 @@ public class LevelGenerator : MonoBehaviour {
 		{	
 			for(int i=0; i<hazardCount; i++)
 			{			
-				Vector3 asteroidSpawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y , transform.position.z);
+				Vector3 asteroidSpawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), Random.Range(-spawnValues.y, spawnValues.y) , spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
 
 				GameObject asteroid = (GameObject)Instantiate(hazard, asteroidSpawnPosition, spawnRotation);
@@ -43,7 +44,23 @@ public class LevelGenerator : MonoBehaviour {
 
 				yield return new WaitForSeconds (spawnWait);
 			}
-			
+			wallchance = Random.Range(0, 100);
+			if (wallchance>50)
+			{
+				for(int i=0; i<hazardCount/2; i++)
+				{			
+					Vector3 asteroidSpawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), Random.Range(-spawnValues.y, spawnValues.y) , spawnValues.z);
+					Quaternion spawnRotation = Quaternion.identity;
+					
+					GameObject asteroid = (GameObject)Instantiate(hazard, asteroidSpawnPosition, spawnRotation);
+					Rigidbody asteroidRigidBody = asteroid.GetComponent<Rigidbody>();
+					asteroidRigidBody.AddForce(-Vector3.forward * asteroidSpeed);
+					
+					yield return new WaitForSeconds (0);
+				}
+
+			}
+			hazardCount++;
 			yield return new WaitForSeconds (waveWait);
 			
 		}

@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 		float verticalMovement = Input.GetAxis ("Vertical");
 		float horizontalMovement = Input.GetAxis ("Horizontal");
 		Vector3 movementVelocity = new Vector3 (horizontalMovement, verticalMovement, 0);
-		rigidBody.AddForce (movementVelocity * tiltSpeed - rigidBody.velocity);
+		rigidBody.AddForce (movementVelocity * tiltSpeed - rigidBody.velocity*0.1f);
 	}
 
 	private void moveForward(){
