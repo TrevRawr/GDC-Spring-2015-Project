@@ -1,0 +1,33 @@
+Initialize engine version: 5.0.0f4 (5b98b70ebeb9)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Mobility Radeon HD 5000 Series (ID=0x68c1)
+    Vendor:   ATI
+    VRAM:     1015 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Trevor\Documents\gdc-game-jam\GDC-Spring-2015-Project\GDC Club Project 2015\tfd_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Trevor\Documents\gdc-game-jam\GDC-Spring-2015-Project\GDC Club Project 2015\tfd_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Trevor\Documents\gdc-game-jam\GDC-Spring-2015-Project\GDC Club Project 2015\tfd_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Trevor\Documents\gdc-game-jam\GDC-Spring-2015-Project\GDC Club Project 2015\tfd_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Trevor\Documents\gdc-game-jam\GDC-Spring-2015-Project\GDC Club Project 2015\tfd_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Trevor\Documents\gdc-game-jam\GDC-Spring-2015-Project\GDC Club Project 2015\tfd_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.074 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Trevor\Documents\gdc-game-jam\GDC-Spring-2015-Project\GDC Club Project 2015\tfd_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Trevor\Documents\gdc-game-jam\GDC-Spring-2015-Project\GDC Club Project 2015\tfd_Data\Managed\System.dll (this message is harmless)
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: d1c -> priority: 1 
+Die
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.105344 ms
+
+Unloading 47 unused Assets to reduce memory usage. Loaded Objects now: 147.
+Total: 0.594758 ms (FindLiveObjects: 0.020210 ms CreateObjectMapping: 0.022616 ms MarkObjects: 0.250222 ms  DeleteObjects: 0.301228 ms)
+
