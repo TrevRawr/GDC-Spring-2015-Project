@@ -4,18 +4,20 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	private Rigidbody rigidBody;
+
+	//if you want the dhip to move forward, use these
 	public float forwardMoveSpeed;
 	public float forwardAcceleration;
-	public int verticalSpeed;
-	public int horizontalSpeed;
 
-	//mobile
+	//mobile tilt controls
+	//note that right now, tilt speed is also being used as the arrow key control speed too
+	public float tiltSpeed;
 	public float tiltOffset;
-	public float verticalTiltSpeed;
-	public float horizontalTiltSpeed;
+
+	//boost
 	public int boostStrength;
+	public float boostRegenerationTime;
 	private bool boostReady = true;
-	public int maxSpeed;
 
 	//bounds
 	public int maxVerticalDistance;
@@ -25,22 +27,24 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
 	void FixedUpdate(){
-		//Movement ();
-		tiltMovement ();
-		boost ();
+		clampMovement();
+		if (boostReady) {
+			tiltMovement ();
+			Movement ();
+			boost ();
+		}
 	}
 
 	private void Movement(){
-		clampMovement ();
 		float verticalMovement = Input.GetAxis ("Vertical");
 		float horizontalMovement = Input.GetAxis ("Horizontal");
-		rigidBody.velocity = new Vector3 (horizontalSpeed * horizontalMovement , verticalSpeed * verticalMovement, forwardMoveSpeed);
+		Vector3 movementVelocity = new Vector3 (horizontalMovement, verticalMovement, 0);
+		rigidBody.AddForce (movementVelocity * tiltSpeed - rigidBody.velocity);
+	}
+
+	private void moveForward(){
 		forwardMoveSpeed += forwardAcceleration;
 	}
 
@@ -51,32 +55,28 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void tiltMovement(){
-		clampMovement ();
-		Vector3 movementSpeed = Input.acceleration;
-		float verticalMovement = -movementSpeed.y - tiltOffset/100;
-		float horizontalMovement = movementSpeed.x;
+		Vector3 movementVelocity = Input.acceleration;
 
-		//force movement not working yet
-//		Vector2 currSpeed = new Vector2 (rigidBody.velocity.x, rigidBody.velocity.y);
-//		if (currSpeed.magnitude < maxSpeed) {
-//			rigidBody.AddForce(new Vector3(horizontalTiltSpeed * horizontalMovement, verticalTiltSpeed * verticalMovement, forwardMoveSpeed));
-//		}
-		rigidBody.position += new Vector3 (horizontalTiltSpeed * horizontalMovement , verticalTiltSpeed * verticalMovement, forwardMoveSpeed);
-		forwardMoveSpeed += forwardAcceleration;
+		//we don't want the ship moving forwards or backwards
+		//only up and down, left and right
+		movementVelocity.z = 0;
+
+		rigidBody.AddForce (movementVelocity * tiltSpeed - rigidBody.velocity);
 	}
 
 	private void boost(){
 		if (Input.touchCount > 0) {
 			Touch touch = Input.GetTouch (0);
 			//Debug.Log (touch.deltaPosition);
-			Vector2 boost = touch.deltaPosition;
-			if (boost != Vector2.zero && boostReady) {
+			Vector2 boostDirection = touch.deltaPosition;
+			if (boostDirection != Vector2.zero && boostReady) {
 				Debug.Log ("Boost!");
-				boost.Normalize();
-				rigidBody.AddForce(boost * boostStrength);
+				boostDirection.Normalize();
+				rigidBody.velocity = Vector3.zero;
+				rigidBody.AddForce(boostDirection * boostStrength);
 				//disable boost
 				boostReady = false;
-				Invoke ("resetBoost", 3);
+				Invoke ("resetBoost", boostRegenerationTime);
 			}
 		}
 	}

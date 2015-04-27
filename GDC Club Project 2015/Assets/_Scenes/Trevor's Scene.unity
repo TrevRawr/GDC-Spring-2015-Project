@@ -1432,13 +1432,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardMoveSpeed: 0
   forwardAcceleration: 9.99999975e-05
-  verticalSpeed: 20
-  horizontalSpeed: 20
+  tiltSpeed: 10
   tiltOffset: 2
-  verticalTiltSpeed: .25
-  horizontalTiltSpeed: .25
   boostStrength: 100
-  maxSpeed: 10000
+  boostRegenerationTime: 1
   maxVerticalDistance: 4
   maxHorizontalDistance: 4
 --- !u!23 &1143597363
