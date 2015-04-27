@@ -130,6 +130,10 @@ Prefab:
       propertyPath: asteroidToCharacterDistance
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11470164, guid: fd529e29551ee604bba0df7baa3c3506, type: 2}
+      propertyPath: asteroidSpeed
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd529e29551ee604bba0df7baa3c3506, type: 2}
   m_IsPrefabParent: 0
@@ -1566,7 +1570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -1789,3 +1793,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3a105cea64c8647ba671b96c4d9c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraLagRate: 5

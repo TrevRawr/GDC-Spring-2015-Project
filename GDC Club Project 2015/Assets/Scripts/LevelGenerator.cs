@@ -14,6 +14,7 @@ public class LevelGenerator : MonoBehaviour {
 
 	private GameObject player;
 	public float asteroidToCharacterDistance;
+	public float asteroidSpeed;
 
 	void Start () 
 	{
@@ -35,7 +36,11 @@ public class LevelGenerator : MonoBehaviour {
 			{			
 				Vector3 asteroidSpawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y , transform.position.z);
 				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate(hazard, asteroidSpawnPosition, spawnRotation);
+
+				GameObject asteroid = (GameObject)Instantiate(hazard, asteroidSpawnPosition, spawnRotation);
+				Rigidbody asteroidRigidBody = asteroid.GetComponent<Rigidbody>();
+				asteroidRigidBody.AddForce(-Vector3.forward * asteroidSpeed);
+
 				yield return new WaitForSeconds (spawnWait);
 			}
 			
