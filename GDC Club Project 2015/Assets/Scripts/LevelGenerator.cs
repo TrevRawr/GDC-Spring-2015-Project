@@ -36,8 +36,7 @@ public class LevelGenerator : MonoBehaviour {
 		while(true)
 		{	
 			int ufochance = Random.Range(0, 100);
-			if (ufochance>ufoProbability){
-				Debug.Log ("BWAAAAAKBAKBAKBAK");
+			if (ufochance < ufoProbability){
 				Vector3 ufoSpawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), Random.Range(-spawnValues.y, spawnValues.y) , spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
 				
