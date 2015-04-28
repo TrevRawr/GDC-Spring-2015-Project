@@ -12,6 +12,8 @@ public class CollisionDetection : MonoBehaviour {
 	public AudioClip explosionSound;
 	private AudioSource explosionSource;
 
+	private AudioSource backgroundMusic;
+
 	private int score;
 
 	// Use this for initialization
@@ -23,6 +25,7 @@ public class CollisionDetection : MonoBehaviour {
 		gameOverScreen.SetActive (false);
 		playerUI = GameObject.Find ("Player UI");
 		explosionSource = GetComponent<AudioSource> ();
+		backgroundMusic = GameObject.Find ("BackGround Music").GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +40,7 @@ public class CollisionDetection : MonoBehaviour {
 		setScore ();
 		playerUI.SetActive (false);
 		gameOver = true;
+		backgroundMusic.Stop ();
 		Invoke ("Die", secondsTillExplosion);
 	}
 
