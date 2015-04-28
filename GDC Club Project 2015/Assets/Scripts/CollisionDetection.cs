@@ -9,6 +9,9 @@ public class CollisionDetection : MonoBehaviour {
 	GameObject playerUI;
 	bool gameOver = false;
 
+	public AudioClip explosionSound;
+	private AudioSource explosionSource;
+
 	private int score;
 
 	// Use this for initialization
@@ -19,6 +22,7 @@ public class CollisionDetection : MonoBehaviour {
 		gameOverScreen = GameObject.Find ("Game Over Screen");
 		gameOverScreen.SetActive (false);
 		playerUI = GameObject.Find ("Player UI");
+		explosionSource = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -32,6 +36,7 @@ public class CollisionDetection : MonoBehaviour {
 		//DetachWings ();
 		setScore ();
 		playerUI.SetActive (false);
+		gameOver = true;
 		Invoke ("Die", secondsTillExplosion);
 	}
 
@@ -50,12 +55,12 @@ public class CollisionDetection : MonoBehaviour {
 	void setScore() {
 		if (!gameOver) {
 			score = GameObject.Find ("GameManager").GetComponent<ScoreManager> ().getCurrentScore ();
+			explosionSource.PlayOneShot (explosionSound);
 		}	
 	}
 
 	void Die(){
 		gameOverScreen.SetActive (true);
-		gameOver = true;
 		UnityEngine.UI.Text scoreText = gameOverScreen.GetComponentsInChildren<UnityEngine.UI.Text> ()[1];
 		scoreText.text = "Your Score: " + score.ToString ();
 	}
