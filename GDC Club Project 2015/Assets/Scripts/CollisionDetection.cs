@@ -5,23 +5,33 @@ public class CollisionDetection : MonoBehaviour {
 	GameObject explosionParticles;
 	public int secondsTillExplosion;
 	GameObject mainCamera;
+	GameObject gameOverScreen;
+	GameObject playerUI;
+	bool gameOver = false;
+
+	private int score;
 
 	// Use this for initialization
 	void Start () {
 		explosionParticles = GameObject.Find ("Explosion");
 		explosionParticles.SetActive (false);
 		mainCamera = GameObject.Find("Main Camera");
+		gameOverScreen = GameObject.Find ("Game Over Screen");
+		gameOverScreen.SetActive (false);
+		playerUI = GameObject.Find ("Player UI");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		RestartGame ();
 	}
 
 	void OnCollisionEnter(Collision collision){
 		explosionParticles.SetActive(true);
 		ParentCamera ();
 		//DetachWings ();
+		setScore ();
+		playerUI.SetActive (false);
 		Invoke ("Die", secondsTillExplosion);
 	}
 
@@ -37,8 +47,26 @@ public class CollisionDetection : MonoBehaviour {
 		wingsBody.useGravity = false;
 	}
 
+	void setScore() {
+		if (!gameOver) {
+			score = GameObject.Find ("GameManager").GetComponent<ScoreManager> ().getCurrentScore ();
+		}	
+	}
+
 	void Die(){
-		Debug.Log ("Die");
-		Application.LoadLevel ("GameOver");
+		gameOverScreen.SetActive (true);
+		gameOver = true;
+		UnityEngine.UI.Text scoreText = gameOverScreen.GetComponentsInChildren<UnityEngine.UI.Text> ()[1];
+		scoreText.text = "Your Score: " + score.ToString ();
+	}
+
+	void RestartGame ()
+	{
+		if (gameOver) {
+			if (Input.GetKey (KeyCode.Space)) {
+				int currLevel = Application.loadedLevel;
+				Application.LoadLevel (currLevel);
+			}
+		}
 	}
 }

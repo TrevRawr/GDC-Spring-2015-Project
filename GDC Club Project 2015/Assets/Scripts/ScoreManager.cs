@@ -17,4 +17,8 @@ public class ScoreManager : MonoBehaviour {
 		score = (int)time;
 		scoreText.text = "Score: " + score;
 	}
+
+	public int getCurrentScore(){
+		return score;
+	}
 }
